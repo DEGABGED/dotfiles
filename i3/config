@@ -267,3 +267,6 @@ exec compton --config ~/.config/compton.conf
 
 # gnome-settings-daemon
 exec /usr/libexec/gnome-settings-daemon &
+
+# Scrot
+bindsym $mod+shift+p exec scrot
