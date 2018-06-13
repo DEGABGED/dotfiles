@@ -39,11 +39,11 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # Replace mod+d for searching and dmenu_run with rofi
-#bindsym $mod+space exec rofi -show run -lines 3 -eh 2 -width 50 -padding 25 -opacity "75" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd"
-bindsym $mod+space exec rofi -show run
+bindsym $mod+space exec rofi -show run -lines 3 -eh 2 -width 50 -padding 25 -opacity "75" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd"
+#bindsym $mod+space exec rofi -show run
 
 # start dmenu (a program launcher)
-# bindsym $mod+d exec dmenu_run
+#bindsym $mod+space exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -97,7 +97,7 @@ bindsym $mod+semicolon focus mode_toggle
 bindsym $mod+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+Shift+a focus child
 
 # App borders
 new_window pixel 1
@@ -140,8 +140,8 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
 # Assignments
-assign [class="Firefox"] $ws1
-assign [class="discord"] $ws7
+assign [class="Firefox"] $ws2
+assign [class="discord"] $ws2
 assign [class="Spotify"] $ws10
 assign [title="Messenger"] $ws7
 assign [instance="libreoffice"] $ws5
@@ -217,7 +217,8 @@ hide_edge_borders both
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # User-added configuration
-bindsym $mod+shift+x exec "sudo pm-suspend | i3lock -c 000000"
+#bindsym $mod+shift+x exec "sudo pm-suspend | i3lock -c 000000"
+bindsym $mod+shift+x exec "sudo pm-suspend | ~/.config/i3/pixel-lock 4"
 bindsym $mod+x exec i3lock -c 000000
 # -c 080808
 
@@ -225,8 +226,8 @@ bindsym $mod+x exec i3lock -c 000000
 # bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
 # bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
 # bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
-bindsym $mod+Up exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym $mod+Down exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym $mod+Up exec --no-startup-id pactl set-sink-volume 5 +5% #increase sound volume
+bindsym $mod+Down exec --no-startup-id pactl set-sink-volume 5 -5% #decrease sound volume
 
 # Sreen brightness controls
 # bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
@@ -235,20 +236,15 @@ bindsym $mod+Right exec xbacklight -inc 5 # increase screen brightness
 bindsym $mod+Left exec xbacklight -dec 5 # decrease screen brightness
 
 # Touchpad controls
-# bindsym XF86TouchpadToggle exec toggletouchpad.sh # toggle touchpad
-# bindsym F4 exec toggletouchpad.sh # toggle touchpad
-bindsym $mod+t exec /home/franciszacdlc/Scripts/toggletouchpad.sh # Because F4 doesn't fucking work
-# bindsym $mod+Shift+t exec /home/franciszacdlc/Scripts/togglekeyboard.sh # To use mechanical
+
+# Monitor settings
+#exec xrandr --output DVI-D-0 --left-of DVI-I-0
+#exec xrandr --output DVI-I-0 --auto --pos 2560x360
 
 # Media player controls
-bindsym XF86AudioPlay exec playerctl play
-bindsym XF86AudioPause exec playerctl pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
 
 # Feh and IO settings
 exec feh --recursive --randomize --bg-fill ~/Pictures/Wallpapers/*
-exec xinput disable 10
 
 # i3-gaps
 for_window [class="^.*"] border pixel 0
@@ -257,7 +253,6 @@ gaps outer 4
 
 # Compton
 exec compton --config ~/.config/compton.conf
-#exec_always compton --config /dev/null -i 0.8
 
 # Focus mouse
 #focus_follows_mouse no
